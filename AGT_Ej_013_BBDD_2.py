@@ -2,7 +2,12 @@
 # -*- coding: utf-8 -*-
 # AGT
 # Copyright 2019 Ariel H Garcia Traba <ariel.garcia.traba@gmail.com>
-#
+def limpiar():
+    import os
+    if os.name == 'nt':
+        os.system('cls')
+    else:
+        os.system('clear')
 print("############################################################################");
 print("##                                                                        ##");
 print("##      Unidad 1 -¿Qué es Python?                                         ##");
@@ -178,12 +183,8 @@ print (r" C:\Users\Your ALUMNO_NOMBRE\AppData\Local\Programs\Python\Python36-32\
 print("https://dev.mysql.com/doc/connector-python/en/connector-python-example-ddl.html")
 print("https://www.guru99.com/how-to-create-a-database.html")
 print("http://www.mysqltutorial.org/mysql-datetime/")
-def limpiar():
-    import os
-    if os.name == 'nt':
-        os.system('cls')
-    else:
-        os.system('clear')
+print(input("continuo????"))
+limpiar();
 import mysql.connector
 import datetime
 #from datetime import date
@@ -246,7 +247,8 @@ def Recargar_practica():
 
 Iniciar_practica()
 print(input("continuo????"))
-print (input("\n\n  1) SELECIONO TODO LOQUE TENGA LA TABLA ?"));
+limpiar();
+print (input("\n\n  1_1) SELECIONO Y MUESTRO TODO LO QUE TENGA LA TABLA ?"));
 conectarse = mysql.connector.connect(host="localhost",user="root", passwd="mysql2019", database="UTN_practica_2_2019")
 puntero = conectarse.cursor()
 print ('puntero.execute("SELECT * FROM 2019_Marzo")');
@@ -254,9 +256,13 @@ puntero.execute("SELECT * FROM 2019_Marzo")
 resultados = puntero.fetchall()
 for cada_rec in resultados:
 	print(cada_rec)
+print (input("\n\n  1_2) MUESTRO POR FILAS LAS COLUMNAS SELECCIONADAS TODO LO QUE TENGA LA TABLA ?"));
+puntero.execute("select ALUMNO_APELLIDO, ALUMNO_NOMBRE, ALUMNO_MAIL, ALUMNO_CELULAR, ALUMNO_EDAD, ALUMNO_GENERO, ALUMNO_INGRESO from 2019_Marzo")
+print("ALUMNO_APELLIDO, ALUMNO_NOMBRE, ALUMNO_MAIL, ALUMNO_CELULAR, ALUMNO_EDAD, ALUMNO_GENERO, ALUMNO_INGRESO")
+for fila in puntero:
+	print(fila)
+	print("------------------------------\n")
 puntero.close
-
-
 print (input("\n\n  2) SELECIONO POR COLUMNA ALUMNO_NOMBRE, ALUMNO_MAIL FROM 2019_Marzo ?"));
 conectarse = mysql.connector.connect(host="localhost",user="root", passwd="mysql2019", database="UTN_practica_2_2019")
 puntero = conectarse.cursor()
@@ -265,8 +271,8 @@ resultados = puntero.fetchall()
 for cada_rec in resultados:
 	print(cada_rec)
 puntero.close
-
-
+print(input("continuo????"))
+limpiar();
 print (input("\n\n  3)SELECCIONO CON FILTROS `WHERE` ?"));
 conectarse = mysql.connector.connect(host="localhost",user="root", passwd="mysql2019", database="UTN_practica_2_2019")
 puntero = conectarse.cursor()
@@ -275,7 +281,8 @@ puntero.execute(sql)
 resultados = puntero.fetchall()
 for cada_rec in resultados:
 	print(cada_rec)
-  
+print(input("continuo????"))
+limpiar();
 print (input("\n\n  4 ) * FILTRO CON CARACTERES % wildcard '%LIKE%' ?"));
 conectarse = mysql.connector.connect(host="localhost",user="root", passwd="mysql2019", database="UTN_practica_2_2019")
 puntero = conectarse.cursor()
@@ -285,7 +292,8 @@ resultados = puntero.fetchall()
 for cada_rec in resultados:
 	print(cada_rec) 
 puntero.close
-
+print(input("continuo????"))
+limpiar();
 print (input("\n\n  5 ) FILTRO CON CARACTERES %s wildcard  SQL Injection ?"));
 conectarse = mysql.connector.connect(host="localhost",user="root", passwd="mysql2019", database="UTN_practica_2_2019")
 puntero = conectarse.cursor()
@@ -296,7 +304,8 @@ resultados = puntero.fetchall()
 for cada_rec in resultados:
 	print(cada_rec) 
 puntero.close
-
+print(input("continuo????"))
+limpiar();
 print (input("\n\n  6 ) SORT ?"));
 conectarse = mysql.connector.connect(host="localhost",user="root", passwd="mysql2019", database="UTN_practica_2_2019")
 puntero = conectarse.cursor()
@@ -306,7 +315,8 @@ resultados = puntero.fetchall()
 for cada_rec in resultados:
 	print(cada_rec)
 puntero.close
-
+print(input("continuo????"))
+limpiar();
 print (input("\n\n  7 ) SORT INVERTIDO ?"));
 conectarse = mysql.connector.connect(host="localhost",user="root", passwd="mysql2019", database="UTN_practica_2_2019")
 puntero = conectarse.cursor()
@@ -317,7 +327,8 @@ for cada_rec in resultados:
 	print(cada_rec)
 Recargar_practica()
 puntero.close
-
+print(input("continuo????"))
+limpiar();
 print (input("\n\n  8 ) BORRO UN RECORD ?"));
 conectarse = mysql.connector.connect(host="localhost",user="root", passwd="mysql2019", database="UTN_practica_2_2019")
 puntero = conectarse.cursor()
@@ -341,7 +352,8 @@ for cada_rec in resultados:
 	print(cada_rec)
 Recargar_practica()
 puntero.close
-
+print(input("continuo????"))
+limpiar();
 print (input("\n\n  9 ) BORRO UN RECORD - Prevent SQL Injection ?"));
 conectarse = mysql.connector.connect(host="localhost",user="root", passwd="mysql2019", database="UTN_practica_2_2019")
 puntero = conectarse.cursor()
@@ -364,7 +376,8 @@ for cada_rec in resultados:
 	print(cada_rec)
 Recargar_practica()
 puntero.close
-
+print(input("continuo????"))
+limpiar();
 print (input("\n\n  10 ) ACTUALIZAR UN DATO 'UPDATE' ?"));
 conectarse = mysql.connector.connect(host="localhost",user="root", passwd="mysql2019", database="UTN_practica_2_2019")
 puntero = conectarse.cursor()
@@ -384,7 +397,8 @@ resultados = puntero.fetchall()
 for cada_rec in resultados:
 	print(cada_rec) 
 puntero.close
-
+print(input("continuo????"))
+limpiar();
 print (input("\n\n  11 ) ACTUALIZAR CON %s SQL Injection 'UPDATE' ?"));
 conectarse = mysql.connector.connect(host="localhost",user="root", passwd="mysql2019", database="UTN_practica_2_2019")
 puntero = conectarse.cursor()
@@ -405,7 +419,8 @@ resultados = puntero.fetchall()
 for cada_rec in resultados:
 	print(cada_rec)
 puntero.close
-
+print(input("continuo????"))
+limpiar();
 print (input("\n\n  12 ) LIMITO LA CANTIDAD DE RESULTADOS 'LIMIT' ?"));
 print ("You can limit the number of records returned from the query, by using the 'LIMIT' statement:");
 conectarse = mysql.connector.connect(host="localhost",user="root", passwd="mysql2019", database="UTN_practica_2_2019")
@@ -415,7 +430,8 @@ resultados = puntero.fetchall()
 for cada_rec in resultados:
 	print(cada_rec) 
 puntero.close
-
+print(input("continuo????"))
+limpiar();
 print (input("\n\n  13 ) INICIO DESDE OTRA POSICION OFFSET ?"));
 conectarse = mysql.connector.connect(host="localhost",user="root", passwd="mysql2019", database="UTN_practica_2_2019")
 puntero = conectarse.cursor()
@@ -425,7 +441,8 @@ for cada_rec in resultados:
 	print(cada_rec)
 Recargar_practica()  
 puntero.close
-
+print(input("continuo????"))
+limpiar();
 print (input("\n\n  14 ) BORRO UNA TABLA 'Drop' ?"));
 conectarse = mysql.connector.connect(host="localhost",user="root", passwd="mysql2019", database="UTN_practica_2_2019")
 
@@ -448,7 +465,8 @@ for cada_rec in puntero:
 
 Iniciar_practica()
 puntero.close
-
+print(input("continuo????"))
+limpiar();
 print (input("\n\n  15 ) BORRO UNA TABLA 'Drop' SI EXISTE ?"));
 conectarse = mysql.connector.connect(host="localhost",user="root", passwd="mysql2019", database="UTN_practica_2_2019")
 puntero = conectarse.cursor()

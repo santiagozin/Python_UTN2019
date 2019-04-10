@@ -2,7 +2,12 @@
 # -*- coding: utf-8 -*-
 # AGT
 # Copyright 2019 Ariel H Garcia Traba <ariel.garcia.traba@gmail.com>
-#
+def limpiar():
+    import os
+    if os.name == 'nt':
+        os.system('cls')
+    else:
+        os.system('clear')
 print("############################################################################");
 print("##                                                                        ##");
 print("##      Unidad 1 -¿Qué es Python?                                         ##");
@@ -71,24 +76,6 @@ print("##            * Configuración de remote                                 
 print("##            * Configuración de Git avanzada                             ##");
 print("##                                                                        ##");
 print("############################################################################");
-print("##                                                                        ##");
-print("##         Unidad 5 - MySQL, Parte 1                                      ##");
-print("##            * INSERT, UPDATE, DELETE, SELECT                            ##");
-print("##            * FECHAS Y HORAS                                            ##");
-print("##            * %LIKE%                                                    ##");
-print("##            * JOIN                                                      ##");
-print("##                                                                        ##");
-print("##         Unidad 6 - MySQL, Parte 2                                      ##");
-print("##            * MySQL en Python                                           ##");
-print("##            * Cursor y verificación de consultas                        ##");
-print("##                                                                        ##");
-print("############################################################################");
-def limpiar():
-    import os
-    if os.name == 'nt':
-        os.system('cls')
-    else:
-        os.system('clear')
 print("Inicio ej015_1 -  ");
 import mysql.connector
 import json
@@ -109,16 +96,12 @@ print("##            ● MySQL en Python                                        
 print("##            ● Cursor y verificación de consultas                        ##");
 print("##                                                                        ##");
 print("############################################################################");
-print("#########################################################");
-print("##                                                     ##");
-print("##                    Bases de Datos                   ##");
-print("##                                                     ##");
-print("##           libreria mysql.connector                  ##");
-print("##                                                     ##");
-print("#########################################################");
+print("##                                                                        ##");
+print("##                     libreria mysql.connector                           ##");
+print("##                                                                        ##");
+print("############################################################################");
 print("Inicio ej015_1 -  ");
 import mysql.connector
-import json
 print("#########################################################");
 #print (" C:\Users\Your Name\AppData\Local\Programs\Python\Python36-32\Scripts>python -m pip install mysql-connector ");
 print("https://www.w3schools.com/python/python_mysql_create_db.asp")
@@ -129,7 +112,7 @@ def crear_base(nombre_base_MySQL):
 	conectarse = mysql.connector.connect(host="localhost",user="root", passwd="mysql2019")#database='AGT',
 	puntero = conectarse.cursor()
 	puntero.execute("CREATE DATABASE "+str(nombre_base_MySQL))
-	print ("Creamos la base de datos mi_base_UTN´")
+	print ("Creamos la base de datos "+str(nombre_base_MySQL))
 	print ("cerramos coneccion")
 	puntero.close
 def listar_bases():
@@ -145,13 +128,11 @@ def listar_bases():
 		lista_nombres_bases=lista_nombres_bases[2:lista_nombres_bases_largo]
 		print ("*"+lista_nombres_bases+"*")
 		lista_de_bases.append(lista_nombres_bases);
+	print (lista_de_bases)
+	print ("cerramos coneccion")
 	puntero.close
-	lista_bases_2=json.loads(lista_bases);
-	lista_de_bases_2.append(lista_bases_2);
-	print(lista_de_bases);
-	print(lista_de_bases_2);
-
 	return (lista_de_bases)
+
 def chequear_base_existe(nombre_base_MySQL_input):
 	print ("Conectamos con MySQL")
 	conectarse = mysql.connector.connect(host="localhost",user="root", passwd="mysql2019")
@@ -163,7 +144,6 @@ def chequear_base_existe(nombre_base_MySQL_input):
 		nombre_base_MySQL_para_chequear=str(lista_bases)
 		nombre_largo=len(lista_bases)-4
 		nombre_base_MySQL_para_chequear=nombre_base_MySQL_para_chequear[2:nombre_largo]
-#		print ("*"+nombre_base_MySQL_para_chequear+"*", "*"+nombre_base_MySQL_input+"*")
 		lista_de_bases.append(nombre_base_MySQL_para_chequear);
 	puntero.close
 	print ("cerramos coneccion")
@@ -194,31 +174,55 @@ def listar_tablas(nombre_base_MySQL_input):
 	for lista_tablas in (puntero):
 		print(lista_tablas)
 		lista_nombres_tablas=str(lista_tablas)
-#		lista_nombres_tablas_largo=len(lista_tablas)-4
-#		lista_nombres_tablas=lista_nombres_tablas[2:lista_nombres_tablas_largo]
 		print ("*"+str(lista_nombres_tablas)+"*")
 		lista_de_tablas.append(lista_nombres_tablas);
 	puntero.close
 	return (lista_de_tablas)
 #nombre_base_MySQL=check_base_existe(nombre_base_MySQL)
 
-print ("L) listar Base");
-print ("C) Crear Base");
-print ("A) Abrir Base");
-opcion= input("Opcion : ")
-opcion=opcion.lower()
 
-if opcion =="c":
-	nombre_base_MySQL= "mysql"#input("Ingrese el nombre de la base de datos MySQL : ")
-	crear_base(nombre_base_MySQL)
-elif opcion =="l":
+def borrar_base(nombre_base_MySQL_input):
+	limpiar()
 	listar_bases()
-elif opcion =="a":
-	nombre_base_MySQL= "mysql"#input("Ingrese el nombre de la base de datos MySQL : ")
-	listar_tablas(nombre_base_MySQL)
+	print ("Conectamos con MySQL")
+	conectarse = mysql.connector.connect(host="localhost",user="root", passwd="mysql2019")
+	puntero = conectarse.cursor()
+	accion = input ("Drop la DDBB (S/N)" , nombre_base_MySQL_input)
+	if accion.upper() == "S":
+		print ("Borramos la base de datos ", nombre_base_MySQL_input)
+		puntero.execute("DROP DATABASE "+str(nombre_base_MySQL_input))
+	puntero.close
 
+
+limpiar()
+while True:
+	print ("\n\n\n");	
+	print ("L) listar Base");
+	print ("C) Crear Base");
+	print ("A) Abrir Base");
+	print ("B) Borrar Base");	
+	print ("Z) Salir del programa")
+	opcion= input("Opcion : ")
+	opcion=opcion.upper()
+	if opcion =="C":
+		limpiar()
+		nombre_base_MySQL= input("Ingrese el nombre de la base de datos a CREAR : ")
+		crear_base(nombre_base_MySQL)
+	elif opcion =="L":
+		limpiar()
+		listar_bases()
+	elif opcion =="A":
+		limpiar()
+		nombre_base_MySQL= input("Ingrese el nombre de la base de datos a ABRIR : ")
+		listar_tablas(nombre_base_MySQL)
+	elif opcion =="B":
+		limpiar()
+		nombre_base_MySQL= input("Ingrese el nombre de la base de datos a BORRAR : ")
+		borrar_base(nombre_base_MySQL)
+	elif opcion =="Z":
+		limpiar()
+		break
 """
-
 
 mycursor.execute("SHOW TABLES")
 

@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 # AGT
 # Copyright 2019 Ariel H Garcia Traba <ariel.garcia.traba@gmail.com>
-#
 print("############################################################################");
 print("##                                                                        ##");
 print("##      Unidad 1 -¿Qué es Python?                                         ##");
@@ -63,7 +62,7 @@ print("##            * Programar eventos y poner en marcha el programador       
 print("##            * Programación de eventos considerando prioridades          ##");
 print("##            * Cancelación de eventos                                    ##");
 print("##                                                                        ##");
-print("##         Unidad 10 - GIT Colaborativo -Pair Programming                 ##");#print("https://www.w3schools.in/python-tutorial/gui-programming/")
+print("##         Unidad 10 - GIT Colaborativo -Pair Programming                 ##");
 print("##            * Introducción a CVS y comparativa con SVN                  ##");
 print("##            * Creando un repositorio con GIT, clonar, crear branches    ##");
 print("##            * Borrar, guardar (stash), recuperar (pop)                  ##");
@@ -71,13 +70,11 @@ print("##            * Configuración de remote                                 
 print("##            * Configuración de Git avanzada                             ##");
 print("##                                                                        ##");
 print("############################################################################");
-print("############################################################################");
 print("##                                                                        ##");
 print("##      Unidad 2 - Variables, Listas                                      ##");
 print("##            * Tipos de variables                                        ##");
 print("##            * Procesamiento de cadenas                                  ##");
 print("##                                                                        ##");
-print("############################################################################");     
 print("############################################################################");
 print("##                                                                        ##");
 print("##                                                                        ##");
@@ -120,6 +117,12 @@ print("##            texto desde una variable                                   
 print("##                                                                        ##");
 print("##                                                                        ##");
 print("############################################################################");
+def limpiar():
+    import os
+    if os.name == 'nt':
+        os.system('cls')
+    else:
+        os.system('clear')
 print(input("continuar?"));
 print("\n");
 print("Mutable: su contenido (o dicho valor) puede cambiarse en tiempo de ejecución.");
@@ -177,12 +180,6 @@ cadena=('''"http://docs.python.org.ar/tutorial/3/classes.html"
 "https://pythones.net/instalando-python-3-que-es-un-ide/"
 "https://python-para-impacientes.blogspot.com/2016/02/variables-de-control-en-tkinter.html"
 "https://pythones.net/instalando-python-3-que-es-un-ide/")''');
-def limpiar():
-    import os
-    if os.name == 'nt':
-        os.system('cls')
-    else:
-        os.system('clear')
 print (cadena);
 cadena=("Hola, todo el mundo!");print (type(cadena));
 cadena=('Hola, todo el mundo!');print (type(cadena));
@@ -226,7 +223,6 @@ print (variable1)
 print (input("Fin Fin ej000_V_1 \n		continuar?"));
 limpiar();
 print("#########################################################");
-print(input("continuar?"));
 # Ej 000_V_2
 print("Inicio ej000_V_2");
 var = "xxx"

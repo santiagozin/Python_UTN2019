@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 # AGT
 # Copyright 2019 Ariel H Garcia Traba <ariel.garcia.traba@gmail.com>
-#
 print("############################################################################");
 print("##                                                                        ##");
 print("##      Unidad 1 -¿Qué es Python?                                         ##");
@@ -168,7 +167,7 @@ limpiar();
 print("#########################################################");
 # Ej 008_4
 print("Inicio ej008_4 - manejo errores");
-from AGT_Ej_008_metodo import *
+from AGT_Ej_009_Metodo import *
 valor1=0,1
 valor2=0,1
 while True:

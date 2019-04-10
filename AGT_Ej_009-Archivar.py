@@ -2,7 +2,12 @@
 # -*- coding: utf-8 -*-
 # AGT
 # Copyright 2019 Ariel H Garcia Traba <ariel.garcia.traba@gmail.com>
-#
+def limpiar():
+    import os
+    if os.name == 'nt':
+        os.system('cls')
+    else:
+        os.system('clear')
 print("############################################################################");
 print("##                                                                        ##");
 print("##      Unidad 1 -¿Qué es Python?                                         ##");
@@ -84,12 +89,6 @@ print("##                                archivar                               
 print("##                                                                        ##");
 print("############################################################################");
 # Ej 009_4
-def limpiar():
-    import os
-    if os.name == 'nt':
-        os.system('cls')
-    else:
-        os.system('clear')
 print("Inicio ej 009_4 - manejo desde un archivo separado")
 from AGT_Ej_009_Metodo import *
 valor1=0,1
@@ -110,7 +109,7 @@ print ("resultado radicacion2 : "+str(resultado_radicacion2_metodo(valor1,valor2
 print ("resultado porcentage : "+str(resultado_porcentage_metodo(valor1,valor2)))
 print ("resultado cociente : "+str(resultado_cociente_metodo(valor1,valor2)))
 print ("resultado resto : "+str(resultado_resto_metodo(valor1,valor2)))
-print (input("ej 009_4"); print("")
+print (input("ej 009-1        continuar?"));
 from tkinter import *    # Carga módulo tk (widgets estándar)
 from tkinter import ttk  # Carga ttk (para widgets nuevos 8.5+)
 
@@ -125,4 +124,4 @@ pantalla_1_raiz.configure(bg = "blue")#				 Asigna un color de fondo a la ventan
 # Define un botón en la parte inferior de la ventana que cuando sea presionado hará que termine el programa.
 # El primer parámetro indica el nombre de la ventana 'pantalla_1_raiz' donde se ubicará el botón
 pantalla_1_raiz.mainloop()
-print (input("ej 009-1        continuar?"));
+

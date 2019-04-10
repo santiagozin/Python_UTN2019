@@ -166,31 +166,40 @@ limpiar();
 print("#########################################################");
 # Ej 010_2
 print("Inicio ej010_2 - clase ");
-class Alumno:
-    'Clase para alumnos'
-    numalumnos = 0
-    sumanotas = 0
+print ("""
+__init__ is called when ever an object of the class is constructed. 
+That means when ever we will create a student object we will see the message “A student object is created” in the prompt. 
+You can see the first argument to the method is self. It is a special variable which points to the current object (like this in C++). 
+The object is passed implicitly to every method available in it, but we have to get it explicitly in every method while writing the methods. 
+Example shown below. Remember to declare all the possible attributes in the __init__ method itself.
+Even if you are not using them right away, you can always assign them as None.""")
+class Alumno():
+#    'Clase para alumnos'
+	numalumnos = 0
+	sumanotas = 0
+    
+#	print("__init__ is a special method in Python classes, it is the constructor method for a class.")
+	def __init__(self, nombre, nota):
+		self.nombre = nombre
+		self.nota = nota
+		Alumno.numalumnos += 1
+		Alumno.sumanotas += nota
 
-    def __init__(self, nombre, nota):
-        self.nombre = nombre
-        self.nota = nota
-        Alumno.numalumnos += 1
-        Alumno.sumanotas += nota
+	def mostrarNombreNota(self):
+		return(self.nombre, self.nota);
 
-    def mostrarNombreNota(self):
-        return(self.nombre, self.nota);
+	def mostrarNumAlumnos(self):
+		return(Alumno.numalumnos);
 
-    def mostrarNumAlumnos(self):
-        return(Alumno.numalumnos);
+	def mostrarSumaNotas(self):
+		return(Alumno.sumanotas);
 
-    def mostrarSumaNotas(self):
-        return(Alumno.sumanotas);
-
-    def mostrarNotaMedia(self):
-        if Alumno.numalumnos > 0:
-            return(Alumno.sumanotas/Alumno.numalumnos);
-        else:
-            return("Sin alumnos");
+	def mostrarNotaMedia(self):
+		if Alumno.numalumnos > 0:
+			return(Alumno.sumanotas/Alumno.numalumnos);
+		else:
+			return("Sin alumnos");
+			
 print("Crear objetos (instancias) de una clase");
 print("#Para crear instancias de una clase se llama a la clase por su propio nombre pasando los argumentos que requiera el método constructor __init__ si existe.");
 alumno1 = Alumno("Maria", 8);
@@ -349,7 +358,7 @@ a partir de que contenga este y de alguna manera esto es subjetivo, dependiendo 
 lo tomo puedo aplicarle distintas acciones
 Ejemplo pildoras informaticas video 32
 https://www.youtube.com/watch?v=kV1cN_bqcSw&list=PLU8oAlHdN5BlvPxziopYZRd55pdqFwkeS&index=32
-"""
+""")
 class Coche():
 	ruedas = 4
 	ejes = 2

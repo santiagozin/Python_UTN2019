@@ -2,7 +2,13 @@
 # -*- coding: utf-8 -*-
 # AGT
 # Copyright 2019 Ariel H Garcia Traba <ariel.garcia.traba@gmail.com>
-#
+
+def limpiar():
+    import os
+    if os.name == 'nt':
+        os.system('cls')
+    else:
+        os.system('clear')
 print("############################################################################");
 print("##                                                                        ##");
 print("##      Unidad 1 -¿Qué es Python?                                         ##");
@@ -85,12 +91,6 @@ print("##                                                                       
 print("##                           Bucles // for                                ##")
 print("##                                                                        ##");
 print("############################################################################");
-def limpiar():
-    import os
-    if os.name == 'nt':
-        os.system('cls')
-    else:
-        os.system('clear')
 print("Inicio ej005_1");
 for i in range(5):
 	print ("Valor "+str(i));

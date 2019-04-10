@@ -2,7 +2,12 @@
 # -*- coding: utf-8 -*-
 # AGT
 # Copyright 2019 Ariel H Garcia Traba <ariel.garcia.traba@gmail.com>
-#
+def limpiar():
+    import os
+    if os.name == 'nt':
+        os.system('cls')
+    else:
+        os.system('clear')
 print("############################################################################");
 print("##                                                                        ##");
 print("##      Unidad 1 -¿Qué es Python?                                         ##");
@@ -122,21 +127,13 @@ print("https://www.youtube.com/watch?time_continue=18&v=YLnP2Ge65MU");
 print("\n\n\nen especial\nhttps://pythonprogramming.net/drawing-writing-python-opencv-tutorial/?completed=/loading-video-python-opencv-tutorial/")
 print("https://foro.elhacker.net/scripting/vision_artificial_con_python-t467756.0.html")
 print("https://github.com/CAChemE/curso-opencv-python")
-def limpiar():
-    import os
-    if os.name == 'nt':
-        os.system('cls')
-    else:
-        os.system('clear')
+
+
 import numpy as np
 import cv2
 from matplotlib import pyplot as plt
-import imutils
+#import imutils
 import os
-
-
-
-
 
 
 # Make an array of 120,000 random bytes.

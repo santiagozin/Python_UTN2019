@@ -557,5 +557,5 @@ print (input("Fin Ej 016_6 \n		continuar?"));
 limpiar();
 print("############################################################################"); 
 # Ej 016_6
-print("Inicio Ej 016_1-6");
-scheduler.queue
+#print("Inicio Ej 016_1-6");
+#scheduler.queue

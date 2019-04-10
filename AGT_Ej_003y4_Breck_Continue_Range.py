@@ -71,7 +71,6 @@ print("##            * Configuración de remote                                 
 print("##            * Configuración de Git avanzada                             ##");
 print("##                                                                        ##");
 print("############################################################################");
-print("############################################################################");
 print("##                                                                        ##");
 print("##      Unidad 1 -¿Qué es Python?                                         ##");
 print("##            * Instalación y configuración                               ##");

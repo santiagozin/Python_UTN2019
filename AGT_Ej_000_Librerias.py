@@ -2,7 +2,12 @@
 # -*- coding: utf-8 -*-
 # AGT
 # Copyright 2019 Ariel H Garcia Traba <ariel.garcia.traba@gmail.com>
-#
+def limpiar():
+    import os
+    if os.name == 'nt':
+        os.system('cls')
+    else:
+        os.system('clear')
 print("""
 lenguajes de programacion hacia 2020
 https://www.youtube.com/channel/UCX9NJ471o7Wie1DQe94RVIg

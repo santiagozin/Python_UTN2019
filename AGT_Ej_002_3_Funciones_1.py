@@ -415,4 +415,4 @@ print (input("Fin ej 002_3_7 \n		continuar?"));
 limpiar();
 print("#########################################################");
 # Ej 002_3_
-print("Inicio ej 002_3_8 ")
+#print("Inicio ej 002_3_8 ")

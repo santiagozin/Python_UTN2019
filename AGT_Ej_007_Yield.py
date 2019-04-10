@@ -1,29 +1,81 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-#
-#  yield.py
-#  
-#  Copyright 2019 Ariel H Garcia Traba <AGT@AGT>
-#  
-#  This program is free software; you can redistribute it and/or modify
-#  it under the terms of the GNU General Public License as published by
-#  the Free Software Foundation; either version 2 of the License, or
-#  (at your option) any later version.
-#  
-#  This program is distributed in the hope that it will be useful,
-#  but WITHOUT ANY WARRANTY; without even the implied warranty of
-#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#  GNU General Public License for more details.
-#  
-#  You should have received a copy of the GNU General Public License
-#  along with this program; if not, write to the Free Software
-#  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
-#  MA 02110-1301, USA.
-
-#  
-#  
-
-# Ej 008_3
+# AGT
+# Copyright 2019 Ariel H Garcia Traba <ariel.garcia.traba@gmail.com>
+def limpiar():
+    import os
+    if os.name == 'nt':
+        os.system('cls')
+    else:
+        os.system('clear')
+print("############################################################################");
+print("##                                                                        ##");
+print("##      Unidad 1 -¿Qué es Python?                                         ##");
+print("##            * Instalación y configuración                               ##");
+print("##            * Errores sintácticos y lógicos                             ##");
+print("##            * Programación secuencial                                   ##");
+print("##            * Estructuras condicionales simples, compuestas y anidadas  ##");
+print("##            * Estructuras repetitivas                                   ##");
+print("##                                                                        ##");
+print("##      Unidad 2 - Variables, Listas                                      ##");
+print("##            * Tipos de variables                                        ##");
+print("##            * Procesamiento de cadenas                                  ##");
+print("##            * Listas                                                    ##");
+print("##            * Diccionarios                                              ##");
+print("##                                                                        ##");
+print("##      Unidad 3 - Funciones                                              ##");
+print("##            * Parámetros                                                ##");
+print("##            * Retorno de datos                                          ##");
+print("##            * Return de listas                                          ##");
+print("##            * Parámetros con valor por defecto                          ##");
+print("##                                                                        ##");
+print("##      Unidad 4 - Listas, Tuplas y Diccionarios                          ##");
+print("##         Listas                                                         ##");
+print("##            * Índices                                                   ##");
+print("##            * Recorrer listas                                           ##");
+print("##         Tuplas                                                         ##");
+print("##            * Índices                                                   ##");
+print("##            * Recorrer Tuplas                                           ##");
+print("##         Diccionarios                                                   ##");
+print("##            * Funcionamiento de diccionarios                            ##");
+print("##            * Estructuras tipo JSON                                     ##");
+print("##                                                                        ##");
+print("##         Unidad 5 - MySQL, Parte 1                                      ##");
+print("##            * INSERT, UPDATE, DELETE, SELECT                            ##");
+print("##            * FECHAS Y HORAS                                            ##");
+print("##            * %LIKE%                                                    ##");
+print("##            * JOIN                                                      ##");
+print("##                                                                        ##");
+print("##         Unidad 6 - MySQL, Parte 2                                      ##");
+print("##            * MySQL en Python                                           ##");
+print("##            * Cursor y verificación de consultas                        ##");
+print("##            * Manejo de errores                                         ##");
+print("##                                                                        ##");
+print("##         Unidad 7 - Fechas, Horas, Archivos                             ##");
+print("##            * Modulo time, datetime                                     ##");
+print("##            * Manejo de fechas y horas                                  ##");
+print("##            * Operaciones con archivos                                  ##");
+print("##                                                                        ##");
+print("##         Unidad 8 - OPEN CV                                             ##");
+print("##            * Procesamiento de imágenes en OpenCV                       ##");
+print("##            * Detección y descripción de imágenes                       ##");
+print("##            * Detección de objetos                                      ##");
+print("##                                                                        ##");
+print("##         Unidad 9 - Programación de eventos                             ##");
+print("##            * Módulo sched                                              ##");
+print("##            * Declaración de programadores                              ##");
+print("##            * Programar eventos y poner en marcha el programador        ##");
+print("##            * Programación de eventos considerando prioridades          ##");
+print("##            * Cancelación de eventos                                    ##");
+print("##                                                                        ##");
+print("##         Unidad 10 - GIT Colaborativo -Pair Programming                 ##");
+print("##            * Introducción a CVS y comparativa con SVN                  ##");
+print("##            * Creando un repositorio con GIT, clonar, crear branches    ##");
+print("##            * Borrar, guardar (stash), recuperar (pop)                  ##");
+print("##            * Configuración de remote                                   ##");
+print("##            * Configuración de Git avanzada                             ##");
+print("##                                                                        ##");
+print("############################################################################");
 
 print("Inicio ej008_3 - yield")
 def numeros_pares(maximo):

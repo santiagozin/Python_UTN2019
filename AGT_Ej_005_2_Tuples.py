@@ -191,6 +191,7 @@ print ("Ubicar la posicion de 'linea 3' en el index y es : ")
 print (Nombre_tupla_1.index("linea 3"))
 print (input("Fin ej006_9 \n		continuar?"));
 limpiar();
+"""
 print("#########################################################");
 # Ej 006_10
 #print("Inicio ej006_10 ")
@@ -215,3 +216,4 @@ print("#########################################################");
 # Ej 006_14
 #print("Inicio ej006_14")
 #print (input("Fin ej006_14"); print("")
+"""

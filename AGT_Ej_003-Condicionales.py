@@ -153,7 +153,7 @@ else:
 	print ("(dato[0] <= dato[1]))") 
 
 
-var = int(input ("ingrese un numero"))
+var = int(input ("ingrese un numero : "))
 if var not in dato:
     print (f" {var} no esta en la lista de datos :{dato}")
 else:

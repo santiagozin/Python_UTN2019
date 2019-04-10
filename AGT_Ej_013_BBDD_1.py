@@ -2,7 +2,13 @@
 # -*- coding: utf-8 -*-
 # AGT
 # Copyright 2019 Ariel H Garcia Traba <ariel.garcia.traba@gmail.com>
-#
+
+def limpiar():
+    import os
+    if os.name == 'nt':
+        os.system('cls')
+    else:
+        os.system('clear')
 print("############################################################################");
 print("##                                                                        ##");
 print("##      Unidad 1 -¿Qué es Python?                                         ##");
@@ -163,18 +169,160 @@ print("##  VARBINARY   Similar to VARCHAR, difference is texts are stored       
 print("##              in binary format.                                         ##");
 print("##                                                                        ##");
 print("############################################################################");
-
-def limpiar():
-    import os
-    if os.name == 'nt':
-        os.system('cls')
-    else:
-        os.system('clear')
 print("Inicio ej015_1 -  ");
 print("#########################################################");
 print (r" C:\Users\Your Name\AppData\Local\Programs\Python\Python36-32\Scripts>python -m pip install mysql-connector ");
 print("https://www.w3schools.com/python/python_mysql_create_db.asp")
+print (input("		continuar?"));
+limpiar();
 import mysql.connector
+def crear_base():
+	try:
+		nombre_DDBB = input("ingrese el nombre de la base de datos a crear : ")
+		nombre_DDBB = nombre_DDBB.capitalize()
+		print ("Conectamos con MySQL")
+		conectarse = mysql.connector.connect(host="localhost",user="root", passwd="mysql2019")#database='nombre',
+		puntero = conectarse.cursor()
+		puntero.execute("CREATE DATABASE "+str(nombre_DDBB))
+		print ("Creamos la base de datos  "+str(nombre_DDBB))
+		print ("cerramos coneccion")
+		puntero.close
+		print (input("		continuar?"));
+		limpiar();
+	except Exception as e:
+		print("Exeception occured:{}".format(e))
+	finally:
+		puntero.close()
+def listar_bases():
+	try:
+		print ("Conectamos con MySQL")
+		conectarse = mysql.connector.connect(host="localhost",user="root", passwd="mysql2019")
+		puntero = conectarse.cursor()
+		puntero.execute("SHOW DATABASES")
+		print ("Mostramos las bases de datos  ")
+		lista_de_bases=[]
+		for lista_bases in (puntero):
+			lista_nombres_bases=str(lista_bases)
+			lista_nombres_bases_largo=len(lista_bases)-4
+			lista_nombres_bases=lista_nombres_bases[2:lista_nombres_bases_largo]
+			print ("*"+lista_nombres_bases+"*")
+			lista_de_bases.append(lista_nombres_bases);
+		print (lista_de_bases)
+		print ("cerramos coneccion")
+		puntero.close
+		print (input("		continuar?"));
+		limpiar();
+	except Exception as e:
+		print("Exeception occured:{}".format(e))
+	finally:
+		puntero.close()
+def borrar_base():
+	listar_bases()
+	try:
+		nombre_DDBB = input("ingrese el nombre de la BASE (QUE YA DEBE EXISTIR) de datos para insertar tablas  : ")
+		nombre_DDBB = nombre_DDBB.capitalize()
+		print ("Conectamos con MySQL")
+		conectarse = mysql.connector.connect(host="localhost",user="root", passwd="mysql2019")
+		puntero = conectarse.cursor()
+		accion = input ("Drop la DDBB (S/N)")
+		if accion.upper() == "S":
+			print ("Borramos la base de datos ", nombre_DDBB )
+			puntero.execute("DROP DATABASE "+str(nombre_DDBB))
+		puntero.close
+		print (input("		continuar?"));
+		limpiar();
+	except Exception as e:
+		print("Exeception occured:{}".format(e))
+	finally:
+		puntero.close
+def crear_tablas():
+	try:
+		nombre_DDBB = input("ingrese el nombre de la BASE (QUE YA DEBE EXISTIR) de datos para insertar tablas  : ")
+		nombre_DDBB = nombre_DDBB.capitalize()
+		nombre_tabla = input("ingrese el nombre de la nombre TABLA a crear : ")
+		nombre_tabla = nombre_tabla.upper()
+		nombre_columna_1 = input("ingrese el nombre de la nombre de la COLUMNA 1 a crear : ")
+		nombre_columna_1 = nombre_columna_1.upper()
+		nombre_columna_2 = input("ingrese el nombre de la nombre de la COLUMNA 2 a crear : ")
+		nombre_columna_2 = nombre_columna_2.upper()
+		nombre_columna_3 = input("ingrese el nombre de la nombre de la COLUMNA 3 a crear : ")
+		nombre_columna_3 = nombre_columna_3.upper()
+		
+		print ("Conectamos con MySQL")
+		conectarse = mysql.connector.connect(host="localhost",user="root", passwd="mysql2019",database=str(nombre_DDBB))
+		puntero = conectarse.cursor()
+#		puntero.execute("CREATE TABLE "+str(nombre_tabla)+" (id INT AUTO_INCREMENT PRIMARY KEY, "+str(nombre_columna_1)+" VARCHAR(255), "+str(nombre_columna_2)+" INT, "+str(nombre_columna_3)+" VARCHAR(255))")
+		puntero.execute("CREATE TABLE "+str(nombre_tabla)+" ( "+str(nombre_columna_1)+" VARCHAR(255), "+str(nombre_columna_2)+" INT, "+str(nombre_columna_3)+" VARCHAR(255))")
+		puntero.execute("USE "+str(nombre_DDBB)); # select the database
+		puntero.execute("SHOW TABLES")    # execute 'SHOW TABLES' (but data is not returned)
+		tablas = puntero.fetchall()       # return data from last query
+		puntero.execute("SHOW columns FROM "+str(nombre_tabla))
+		for column in puntero.fetchall():
+			print (column[nombre_tabla]);
+		print (tablas)
+		print ("cerramos coneccion")
+		puntero.close
+	except Exception as e:
+		print("Exeception occured:{}".format(e))
+	finally:
+		puntero.close
+def agregar_id_tablas():
+	try:
+		nombre_DDBB = input("ingrese el nombre de la base(QUE YA DEBE EXISTIR) de datos para insertar ID  : ")
+		nombre_DDBB = nombre_DDBB.capitalize()
+		nombre_tabla = input("ingrese el nombre de la nombre TABLA (QUE  YA DEBE EXISTIR) para insertar ID  : ")
+		nombre_tabla = nombre_tabla.upper()
+		print ("Conectamos con MySQL ", nombre_DDBB )
+		conectarse = mysql.connector.connect(host="localhost",user="root", passwd="mysql2019",database=str(nombre_DDBB))
+		puntero = conectarse.cursor()
+		puntero.execute("ALTER TABLE "+str(nombre_tabla)+" ADD COLUMN id INT AUTO_INCREMENT PRIMARY KEY") 
+		puntero.execute("SHOW TABLES")
+		print ("Mostramos las tablas de la bases de datos UTN_practica1_2019")
+		lista_de_tablas=[]
+		for lista_tablas in (puntero):
+			lista_nombres_tablas=str(lista_tablas)
+			lista_nombres_tablas_largo=len(lista_tablas)-4
+			lista_nombres_tablas=lista_nombres_tablas[2:lista_nombres_tablas_largo]
+			print ("*"+lista_nombres_tablas+"*")
+			lista_de_tablas.append(lista_nombres_tablas);
+		print (lista_de_tablas)
+		print("cerramos coneccion");
+		puntero.close
+		print (input("		continuar?"));
+		limpiar();
+	except Exception as e:
+		print("Exeception occured:{}".format(e))
+	finally:
+		puntero.close
+def listar_tablas():
+	try:
+		nombre_DDBB = "UTN_practica1_2019";
+		print ("Conectamos con MySQL")
+		conectarse = mysql.connector.connect(host="localhost",user="root", passwd="mysql2019",database=str(nombre_DDBB))
+		puntero = conectarse.cursor()
+		puntero.execute("SHOW TABLES")
+		print ("Mostramos las tablas de la bases de datos "+str(nombre_DDBB))
+		lista_de_tablas=[]
+		for lista_tablas in (puntero):
+			lista_nombres_tablas=str(lista_tablas)
+			lista_nombres_tablas_largo=len(lista_tablas)-4
+			lista_nombres_tablas=lista_nombres_tablas[2:lista_nombres_tablas_largo]
+			print ("*"+lista_nombres_tablas+"*")
+			lista_de_tablas.append(lista_nombres_tablas);
+		print (lista_de_tablas)
+		colunma_numero = int(input("Ingrese el numero de la tabla cuyas columnas desea listar : "));
+		puntero.execute("SHOW columns FROM "+str(lista_de_tablas[colunma_numero]))
+		for column in puntero.fetchall():
+			print (column[colunma_numero]);
+		print("cerramos coneccion");
+		puntero.close
+		print (input("		continuar?"));
+		limpiar();
+	except Exception as e:
+		print("Exeception occured:{}".format(e))
+	finally:
+		puntero.close
+################################################            segunda parte del ejercicio
 def Iniciar_practica():
 	try:
 		print ("Conectamos con MySQL")
@@ -205,118 +353,13 @@ def Iniciar_practica():
 		conectarse.commit()
 		print(puntero.rowcount, "record inserted.")
 		puntero.close
+		print (input("		continuar?"));
+		limpiar();
 	except Exception as e:
 		print("Exeception occured:{}".format(e))
 	finally:
-		conectarse.close()
-def crear_base():
-	try:
-		nombre_DDBB = input("ingrese el nombre de la base de datos a crear : ")
-		nombre_DDBB = nombre_DDBB.capitalize()
-		print ("Conectamos con MySQL")
-		conectarse = mysql.connector.connect(host="localhost",user="root", passwd="mysql2019")#database='nombre',
-		puntero = conectarse.cursor()
-		puntero.execute("CREATE DATABASE "+str(nombre_DDBB))
-		print ("Creamos la base de datos  "+str(nombre_DDBB))
-		print ("cerramos coneccion")
 		puntero.close
-	except Exception as e:
-		print("Exeception occured:{}".format(e))
-	finally:
-		conectarse.close()
-def listar_bases():
-	try:
-		print ("Conectamos con MySQL")
-		conectarse = mysql.connector.connect(host="localhost",user="root", passwd="mysql2019")
-		puntero = conectarse.cursor()
-		puntero.execute("SHOW DATABASES")
-		print ("Mostramos las bases de datos  ")
-		lista_de_bases=[]
-		for lista_bases in (puntero):
-			lista_nombres_bases=str(lista_bases)
-			lista_nombres_bases_largo=len(lista_bases)-4
-			lista_nombres_bases=lista_nombres_bases[2:lista_nombres_bases_largo]
-			print ("*"+lista_nombres_bases+"*")
-			lista_de_bases.append(lista_nombres_bases);
-		print (lista_de_bases)
-		print ("cerramos coneccion")
-		puntero.close
-	except Exception as e:
-		print("Exeception occured:{}".format(e))
-	finally:
-		conectarse.close()
-def crear_tablas():
-	try:
-		nombre_DDBB = input("ingrese el nombre de la base de datos para insertar tablas : ")
-		nombre_DDBB = nombre_DDBB.capitalize()
-		nombre_tabla = input("ingrese el nombre de la nombre tabla a crear : ")
-		nombre_tabla = nombre_tabla.upper()
-		nombre_columna_1 = input("ingrese el nombre de la nombre_columna_1 a crear : ")
-		nombre_columna_1 = nombre_columna_1.upper()
-		nombre_columna_2 = input("ingrese el nombre de la nombre_columna_1 a crear : ")
-		nombre_columna_2 = nombre_columna_2.upper()
-		nombre_columna_3 = input("ingrese el nombre de la nombre_columna_1 a crear : ")
-		nombre_columna_3 = nombre_columna_3.upper()
-		
-		print ("Conectamos con MySQL")
-		conectarse = mysql.connector.connect(host="localhost",user="root", passwd="mysql2019",database=str(nombre_DDBB))
-		puntero = conectarse.cursor()
-		puntero.execute("USE "+str(nombre_DDBB)); # select the database
-		puntero.execute("SHOW TABLES")    # execute 'SHOW TABLES' (but data is not returned)
-		tablas = puntero.fetchall()       # return data from last query
-		print (tablas)
-		puntero.execute("CREATE TABLE "+str(nombre_tabla)+" (id INT AUTO_INCREMENT PRIMARY KEY, "+str(nombre_columna_1)+" VARCHAR(255), "+str(nombre_columna_2)+" INT, "+str(nombre_columna_3)+" VARCHAR(255))")
-		print ("cerramos coneccion")
-		puntero.close
-	except Exception as e:
-		print("Exeception occured:{}".format(e))
-	finally:
-		conectarse.close()
-def agregar_id_tablas():
-	try:
-		nombre_DDBB = input("ingrese el nombre de la base de datos para insertar tablas : ")
-		nombre_DDBB = nombre_DDBB.capitalize()
-		print ("Conectamos con MySQL")
-		conectarse = mysql.connector.connect(host="localhost",user="root", passwd="mysql2019",database=str(nombre_DDBB))
-		puntero = conectarse.cursor()
-		puntero.execute("ALTER TABLE customers ADD COLUMN id INT AUTO_INCREMENT PRIMARY KEY") 
-		print (lista_de_tablas)
-		print("cerramos coneccion");
-		puntero.close
-	except Exception as e:
-		print("Exeception occured:{}".format(e))
-	finally:
-		conectarse.close()	
-def listar_tablas():
-	try:
-		nombre_DDBB = "UTN_practica1_2019";
-	#	nombre_DDBB = input("ingrese el nombre de la base de datos para insertar tablas : ")
-	#	nombre_DDBB = nombre_DDBB.capitalize()
-		print ("Conectamos con MySQL")
-		conectarse = mysql.connector.connect(host="localhost",user="root", passwd="mysql2019",database=str(nombre_DDBB))
-		puntero = conectarse.cursor()
-		puntero.execute("SHOW TABLES")
-		print ("Mostramos las tablas de la bases de datos "+str(nombre_DDBB))
-		lista_de_tablas=[]
-		for lista_tablas in (puntero):
-			lista_nombres_tablas=str(lista_tablas)
-			lista_nombres_tablas_largo=len(lista_tablas)-4
-			lista_nombres_tablas=lista_nombres_tablas[2:lista_nombres_tablas_largo]
-			print ("*"+lista_nombres_tablas+"*")
-			lista_de_tablas.append(lista_nombres_tablas);
-		print (lista_de_tablas)
-		colunma_numero = int(input("Ingrese el numero de la tabla cuyas columnas desea listar : "));
-	#	for columnas in  lista_de_tablas
-		puntero.execute("SHOW columns FROM "+str(lista_de_tablas[colunma_numero]))
-		for column in puntero.fetchall():
-			print (column[colunma_numero]);
-		print("cerramos coneccion");
-		puntero.close
-	except Exception as e:
-		print("Exeception occured:{}".format(e))
-	finally:
-		conectarse.close()
-def agregar_datos_tablas():
+def agregar_datos_tabla():
 	try:
 		print ("Conectamos con MySQL")
 		conectarse = mysql.connector.connect(host="localhost",user="root", passwd="mysql2019", database="UTN_practica1_2019")
@@ -342,42 +385,122 @@ def agregar_datos_tablas():
 		conectarse.commit()
 		print(puntero.rowcount, "record inserted.")
 		puntero.close
+		print (input("		continuar?"));
+		limpiar();
 	except Exception as e:
 		print("Exeception occured:{}".format(e))
 	finally:
-		conectarse.close()
-		
-accion = input ("Creamos base de datos (S/N)");
+		puntero.close
+def listar_datos_tabla():
+	try:
+		print ("Conectamos con MySQL")
+		conectarse = mysql.connector.connect(host="localhost",user="root", passwd="mysql2019", database="UTN_practica1_2019")
+		puntero = conectarse.cursor()
+		puntero.execute("select ALUMNO_APELLIDO, ALUMNO_NOMBRE, ALUMNO_MAIL, ALUMNO_CELULAR, ALUMNO_EDAD from 2019_Marzo")
+		for fila in puntero:
+			print(fila)
+			print("------------------------------\n")
+		puntero.close
+		print (input("		continuar?"));
+		limpiar();
+	except Exception as e:
+		print("Exeception occured:{}".format(e))
+	finally:
+		puntero.close
+
+def modificar_datos_tabla():
+	try:
+		print ("Conectamos con MySQL")
+		conectarse = mysql.connector.connect(host="localhost",user="root", passwd="mysql2019", database="UTN_practica1_2019")
+		puntero = conectarse.cursor()
+		puntero.execute("select ALUMNO_APELLIDO, ALUMNO_NOMBRE, ALUMNO_MAIL, ALUMNO_CELULAR, ALUMNO_EDAD from 2019_Marzo")
+		print("--------Ante de borrar-----------\n")
+		for fila in puntero:
+			print(fila)
+			print("------------------------------\n")
+		puntero.execute("update 2019_Marzo set ALUMNO_EDAD=99 where ALUMNO_NOMBRE='Ariel'")
+		conectarse.commit()
+		puntero.execute("select ALUMNO_APELLIDO, ALUMNO_NOMBRE, ALUMNO_MAIL, ALUMNO_CELULAR, ALUMNO_EDAD from 2019_Marzo")
+		print("------Despues de borrar-----------\n")
+		for fila in puntero:
+			print(fila)
+			print("------------------------------\n")
+		puntero.close
+		print (input("		continuar?"));
+		limpiar();
+	except Exception as e:
+		print("Exeception occured:{}".format(e))
+	finally:
+		puntero.close
+def borrar_datos_tabla():
+	try:
+		print ("Conectamos con MySQL")
+		conectarse = mysql.connector.connect(host="localhost",user="root", passwd="mysql2019", database="UTN_practica1_2019")
+		puntero = conectarse.cursor()
+		puntero.execute("select ALUMNO_APELLIDO, ALUMNO_NOMBRE, ALUMNO_MAIL, ALUMNO_CELULAR, ALUMNO_EDAD from 2019_Marzo")
+		print("--------Ante de borrar-----------\n")
+		for fila in puntero:
+			print(fila)
+			print("------------------------------\n")
+		puntero.execute("delete from 2019_Marzo where ALUMNO_NOMBRE='Ariel'")
+		conectarse.commit()
+
+		puntero.execute("select ALUMNO_APELLIDO, ALUMNO_NOMBRE, ALUMNO_MAIL, ALUMNO_CELULAR, ALUMNO_EDAD from 2019_Marzo")
+		print("------Despues de borrar-----------\n")
+		for fila in puntero:
+			print(fila)
+			print("------------------------------\n")
+		puntero.close
+		print (input("		continuar?"));
+		limpiar();
+	except Exception as e:
+		print("Exeception occured:{}".format(e))
+	finally:
+		puntero.close	
+
+accion = input ("Borramos base de datos (S/N)"); limpiar();
+if accion.upper() =="S": borrar_base();
+accion = input ("Creamos base de datos (S/N)"); limpiar();
 if accion.upper() =="S": crear_base();
-accion= input("Listamos base de datos existentes (S/N)");
+accion= input("Listamos base de datos existentes (S/N)"); limpiar();
 if accion.upper() =="S": listar_bases();
-accion = input ("Creamos Tablas en la base de datos (S/N)");
+accion = input ("Creamos Tablas en la base de datos (S/N)"); limpiar();
 if accion.upper() =="S": crear_tablas();
-accion= input("Agrego collumna ID en tabla existentes (S/N)");
-if accion.upper() =="S": agregar_id_tablas();	
-accion= input("Inicio practica alumnos (S/N)");
+accion= input("Agrego columna ID en tabla (S/N)"); limpiar();
+if accion.upper() =="S": agregar_id_tablas();
+################################################            segunda parte del ejercicio
+print ("segunda parte del ejercicio")
+accion= input("Inicio practica alumnos (S/N)"); 
 if accion.upper() =="S": Iniciar_practica()
 accion= input("Listamos Tablas en la base de datos UTN_practica1_2019 (S/N)");
-if accion.upper() =="S": listar_tablas();
-accion= input("Agregar datos en la base de datos UTN_practica1_2019 (S/N)");
-if accion.upper() =="S": agregar_datos_tablas();
+if accion.upper() =="S": listar_tablas(); 
+accion= input("Agregar dato 1 en la base de datos UTN_practica1_2019 (S/N)");
+if accion.upper() =="S": agregar_datos_tabla(); 
+accion= input("Agregar dato 2 en la base de datos UTN_practica1_2019 (S/N)");
+if accion.upper() =="S": agregar_datos_tabla(); 
+accion= input("Agregar dato 3 en la base de datos UTN_practica1_2019 (S/N)");
+if accion.upper() =="S": agregar_datos_tabla(); 
+accion= input("Agregar dato 4 en la base de datos UTN_practica1_2019 (S/N)");
+if accion.upper() =="S": agregar_datos_tabla(); 
+accion= input("Agregar dato 5 en la base de datos UTN_practica1_2019 (S/N)");
+if accion.upper() =="S": agregar_datos_tabla(); 
+accion= input("Agregar dato 6 en la base de datos UTN_practica1_2019 (S/N)");
+if accion.upper() =="S": agregar_datos_tabla(); 
+accion= input("Listar datos en la base de datos UTN_practica1_2019 (S/N)");
+if accion.upper() =="S": listar_datos_tabla(); 
+accion= input("Modificar datos en la base de datos UTN_practica1_2019 (S/N)");
+if accion.upper() =="S": modificar_datos_tabla(); 
+accion= input("Borrar datos en la base de datos UTN_practica1_2019 (S/N)");
+if accion.upper() =="S": borrar_datos_tabla(); 
+
+
+
+
+
+
+
 
 '''
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import datetime
 import mysql.connector
  

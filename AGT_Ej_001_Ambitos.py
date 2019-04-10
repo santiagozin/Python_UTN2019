@@ -313,4 +313,4 @@ print("tiempo dos= ...'NameError...'");
 # Intenta mostrar la variable 'tiempo. Se produce una excepción (error) de tipo NameError
 # porque la variable no pertenece a este ámbito: # NameError: name 'tiempo' is not defined
 print(tiempo);
-print (input("Fin ej000_AMBITOS_8 		continuar?"));
+#print (input("Fin ej000_AMBITOS_8 		continuar?"));

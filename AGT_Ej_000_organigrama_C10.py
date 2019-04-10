@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 # AGT
 # Copyright 2019 Ariel H Garcia Traba <ariel.garcia.traba@gmail.com>
-#
 print("############################################################################");
 print("##                                                                        ##");
 print("##      Unidad 1 -¿Qué es Python?                                         ##");
@@ -71,6 +70,12 @@ print("##            ● Configuración de remote                               
 print("##            ● Configuración de Git avanzada                             ##");
 print("##                                                                        ##");
 print("############################################################################");
+def limpiar():
+    import os
+    if os.name == 'nt':
+        os.system('cls')
+    else:
+        os.system('clear')
 print(input("continuar?"));
 limpiar();
 print("############################################################################");
@@ -91,16 +96,9 @@ print("https://juanjoalvarez.net/es/detail/2006/aug/19/introsubversion/");
 print("https://www.ionos.es/digitalguide/paginas-web/desarrollo-web/git-vs-svn-una-comparativa-del-control-de-versiones/")
 print("""
 https://programminghistorian.org/es/lecciones/introduccion-control-versiones-github-desktop
-
 https://github.com/agt1973/UTN2019#utn2019
-""")
-def limpiar():
-    import os
-    if os.name == 'nt':
-        os.system('cls')
-    else:
-        os.system('clear')
-print("""Git vs. SVN: ¿cuál es el mejor sistema de control de versiones?
+
+"Git vs. SVN: ¿cuál es el mejor sistema de control de versiones?
 Los llamados sistemas de control de versiones fueron creados con el fin de detectar cambios en los documentos o archivos y se encargan de guardar todas las versiones anteriores, incluyendo el registro de fecha y hora, así como el identificador del usuario de un archivo para que los datos puedan ser recuperados y restaurados en cualquier momento. De esta forma, es posible determinar qué usuario ha realizado cambios en un punto determinado. Los objetivos generales de este tipo de sistemas consisten en coordinar el acceso compartido de varios usuarios a los archivos y permitir el desarrollo simultáneo de varias bifurcaciones o branches.  
 
 Generalmente, los sistemas de control de versiones se utilizan para el desarrollo de software, para aplicaciones de oficina y para gestores de contenido. Dos de los más conocidos son Apache Subversion (SVN) y Git, los cuales pueden ser instalados internamente en el servidor propio o externamente en el servidor de algún proveedor de alojamiento web. El servicio de alojamiento basado en la web para proyectos Git es GitHub, mientras que en  RiouxSVN aloja a Subversion. Proveedores como SourceForge ofrecen alojamiento para ambos sistemas.

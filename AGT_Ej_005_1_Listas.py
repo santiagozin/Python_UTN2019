@@ -2,7 +2,12 @@
 # -*- coding: utf-8 -*-
 # AGT
 # Copyright 2019 Ariel H Garcia Traba <ariel.garcia.traba@gmail.com>
-#
+def limpiar():
+    import os
+    if os.name == 'nt':
+        os.system('cls')
+    else:
+        os.system('clear')
 print("############################################################################");
 print("##                                                                        ##");
 print("##      Unidad 1 -¿Qué es Python?                                         ##");
@@ -112,13 +117,6 @@ print("##                                                                       
 print("############################################################################");
 print("https://www.w3schools.com/python/python_ref_list.asp");
 print("\nhttps://www.w3schools.com/python/python_lists.asp");
-def limpiar():
-    import os
-    if os.name == 'nt':
-        os.system('cls')
-    else:
-        os.system('clear')
-print(input("continuar?"));
 print("""
 list.append(x)
     Agrega un ítem al final de la lista. Equivale a a[len(a):] = [x].

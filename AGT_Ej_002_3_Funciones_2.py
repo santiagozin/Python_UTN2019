@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 # AGT
 # Copyright 2019 Ariel H Garcia Traba <ariel.garcia.traba@gmail.com>
-#
 print("############################################################################");
 print("##                                                                        ##");
 print("##      Unidad 1 -¿Qué es Python?                                         ##");
@@ -212,11 +211,44 @@ area_triangulo =lambda base,altura:(base*altura)/2
 base = float(input("Ingrese la base :"))
 altura = float(input("Ingrese la altura :"))
 print(area_triangulo(base,altura))
+print (input("Fin ej 002_3_3 \n		continuar?"));
+limpiar();
+print("#########################################################");
+# Ej 002_3_4
+print("Inicio ej 002_3_4 ");
 
+class Counter:
+	Count = 0   # This represents the count of objects of this class
+	def __init__(self, name):
+		self.name = name
+		print (name, 'created')
+		Counter.Count += 1
+	def __del__(self):
+		print (self.name, 'deleted')
+		Counter.Count -= 1
+		if Counter.Count == 0:
+			print ('Last Counter object deleted')
+		else:
+			print (Counter.Count, 'Counter objects remaining')
+x = Counter("First")
+y = Counter("second")
+del x
 
+"""
+Without the final del, you get an exception. Shouldn’t the normal cleanup process take care of this?
 
+From the Python docs regarding __del__:
 
+    Warning: Due to the precarious circumstances under which __del__() methods are invoked, exceptions that occur during their execution are ignored, and a warning is printed to sys.stderr instead. Also, when __del__() is invoked in response to a module being deleted (e.g., when execution of the program is done), other globals referenced by the __del__() method may already have been deleted. For this reason, __del__() methods should do the absolute minimum needed to maintain external invariants.
 
+Without the explicit call to del, __del__ is only called at the end of the program, Counter and/or Count may have already been GC-ed by the time __del__ is called (the order in which objects are collected is not deterministic). The exception means that Counter has already been collectd. You can’t do anything particularly fancy with __del__.
+
+There are two possible solutions here.
+
+    1. Use an explicit finalizer method, such as close() for file objects.
+
+        Use weak references.
+"""
 
 
 

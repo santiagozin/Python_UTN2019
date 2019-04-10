@@ -2,7 +2,12 @@
 # -*- coding: utf-8 -*-
 # AGT
 # Copyright 2019 Ariel H Garcia Traba <ariel.garcia.traba@gmail.com>
-#
+def limpiar():
+    import os
+    if os.name == 'nt':
+        os.system('cls')
+    else:
+        os.system('clear')
 print("############################################################################");
 print("##                                                                        ##");
 print("##      Unidad 1 -¿Qué es Python?                                         ##");
@@ -125,13 +130,6 @@ print("##  listas podemos realizar operaciones de conjuntos de unión,          
 print("##  diferencia, intersección y diferencia simétrica                       ##");
 print("##                                                                        ##");
 print("############################################################################");
-
-def limpiar():
-    import os
-    if os.name == 'nt':
-        os.system('cls')
-    else:
-        os.system('clear')
 print("https://www.w3schools.com/python/python_sets.asp");
 print (input("Fin    continuar?"));
 Nombre_set_1 = {"linea 1","linea 2","linea 3","linea 4","linea 5","linea 6","linea 7","linea 8","linea 9","linea 1"}

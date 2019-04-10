@@ -2,7 +2,12 @@
 # -*- coding: utf-8 -*-
 # AGT
 # Copyright 2019 Ariel H Garcia Traba <ariel.garcia.traba@gmail.com>
-#
+def limpiar():
+    import os
+    if os.name == 'nt':
+        os.system('cls')
+    else:
+        os.system('clear')
 print("############################################################################");
 print("##                                                                        ##");
 print("##      Unidad 1 -¿Qué es Python?                                         ##");
@@ -112,12 +117,6 @@ print("##                                                                       
 print("############################################################################");
 print("https://www.w3schools.com/python/python_ref_dictionary.asp");
 print("\nhttps://www.w3schools.com/python/python_dictionaries.asp");
-def limpiar():
-    import os
-    if os.name == 'nt':
-        os.system('cls')
-    else:
-        os.system('clear')
 Nombre_diccionario_1 = {"clave 1":"dato_asociado 1","clave 2":"dato_asociado 2","clave 3":"dato_asociado 3","clave 4":"dato_asociado 4","clave 5":"dato_asociado 5","clave 6":"dato_asociado 6","clave 7":"dato_asociado 7","clave 8":"dato_asociado 8","clave 9":"dato_asociado 9","clave 10":"dato_asociado 10"}
 Nombre_tupla_1 = ["linea 1","linea 2","linea 3","linea 4","linea 5","linea 6","linea 7","linea 8","linea 9","linea 1"]
 Nombre_tupla_2 = ["columna 1","columna 2","columna 3","columna 4","columna 5","columna 6","columna 7","columna 8","columna 9","columna 10"]
@@ -198,8 +197,8 @@ profession = { "nombres":["Juan", "Pedro"],
 # Use of format_map() function  
 print("{nombres[0]} trabaja de {profesion[0]} y tiene {edad[0]} años.".format_map(profession)) 
 print("{nombres[1]} trabaja de {profesion[1]} y tiene {edad[1]} años.".format_map(profession)) 
-print (input("Fin ej007_7 \n		continuar?"));
-limpiar();
-print("#########################################################");
+#print (input("Fin ej007_7 \n		continuar?"));
+#limpiar();
+#print("#########################################################");
 # Ej 007_8
 #print("Inicio ej007_8 ")

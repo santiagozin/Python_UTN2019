@@ -242,5 +242,5 @@ print (input("Fin ej 002_9 \n		continuar?"));
 limpiar();
 print("#########################################################");
 # Ej 002_9
-print("Inicio ej 002_9 -");
+#print("Inicio ej 002_9 -");
 
